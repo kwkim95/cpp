@@ -1,10 +1,15 @@
 /* 홍정모의 따라하며 배우는 C++ 1장 */
 #include <iostream>
+#include "calculator.h"
+//#include <algorithm>
 using namespace std;
 
-//int calculator(int a, int b, char c); // 리턴값이 없다면 void로 선언
-//
-//int calculator(int a, int b, char c) // 계산기함수 선언 
+//#define MAX 1024
+
+//int calculator(int a, int b, char c); // 계산기함수 선언, 컴파일러에게 함수가 있음을 미리 알림
+//리턴값이 없다면 void로 선언
+
+//int calculator(int a, int b, char c) // 계산기함수 정의
 //{
 //	int calc;
 //
@@ -31,8 +36,40 @@ using namespace std;
 //	return calc;
 //}
 
+// 같은 함수명이나 변수명을 반드시 사용해야할때는 하나의 함수를 namespace안에 넣어서 사용
+//namespace mySpace 
+//{
+//	//namespace안에 namespace도 사용가능
+//	namespace innerSpace
+//	{
+//		int calc(int a, int b)
+//		{
+//			return a - b;
+//		}
+//	}
+//	int calc(int a, int b)
+//	{
+//		return a + b;
+//	}
+//}
+//int calc(int a, int b)
+//{
+//	return a * b;
+//}
+
 int main()
 {
+
+//전처리기 -> OS가 리눅스인지 윈도우인지 확인,, 그래픽카드 사양 등 프로그램이 시작되기전에 확인
+//MAX가 정의되어있으면
+//#ifdef MAX 
+//	cout << MAX << endl;
+//#endif
+//	//MAX가 정의되어있지않으면
+//#ifndef MAX
+//	cout << -1024 << endl;
+//#endif
+
 	//소스코드 - 컴파일 -> 오브젝트파일
 	//오브젝트파일 - 링커 -> 실행파일
 	//디버그 : 오류를 찾아서 고친다
@@ -78,7 +115,12 @@ int main()
 	//int a_values			= 5;
 	//int banana_price		= 10;
 	//char first_alphabet	= 'a';
+	
+	//cout << mySpace::calc(3, 4) << endl;
+	//cout << mySpace::innerSpace::calc(3, 4) << endl;
+	//cout << calc(3,4) << endl;
 
+	//cout << std::min(50, 2) << endl;
 
 }
 
