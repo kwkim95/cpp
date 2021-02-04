@@ -4,6 +4,8 @@
 #include <vector>
 #include <array>
 #include <tuple>
+#include <cassert>
+#include <cstdarg> // for ellipsis
 
 using namespace std;
 
@@ -127,30 +129,81 @@ using namespace std;
 //	return 10;
 //}
 
-bool isEven(const int& number)
-{
-	if (number % 2 == 0) return true;
-	else return false;
-}
+//bool isEven(const int& number)
+//{
+//	if (number % 2 == 0) return true;
+//	else return false;
+//}
+//
+//bool isOdd(const int& number)
+//{
+//	if (number % 2 != 0) return true;
+//	else return false;
+//}
+//
+//// 함수의 포인터를 매개변수로 받음
+//// 기능을 수행하는것을 매개변수로 받을수있음
+//void printNumber(const array<int, 10>& my_array, bool (*check_func)(const int&))
+//{
+//	for (auto element : my_array)
+//	{
+//		if (check_func(element) == true)
+//			cout << element << " ";
+//	}
+//}
 
-bool isOdd(const int& number)
-{
-	if (number % 2 != 0) return true;
-	else return false;
-}
+//vector를 스택처럼 사용하기
+//void printStack(const std::vector<int>& stack)
+//{
+//	for (auto& e : stack)
+//	{
+//		cout << e << ' ';
+//	}
+//	cout << endl;
+//}
 
-// 함수의 포인터를 매개변수로 받음
-// 기능을 수행하는것을 매개변수로 받을수있음
-void printNumber(const array<int, 10>& my_array, bool (*check_func)(const int&))
-{
-	for (auto element : my_array)
-	{
-		if (check_func(element) == true)
-			cout << element << " ";
-	}
-}
+//void countDown(int count)
+//{
+//	cout << count << endl;
+//	if(count>1)
+//		countDown(count - 1);
+//}
 
-int main()
+//int Fibo(int n)
+//{
+//	if (n <= 2)
+//		return 1;
+//	else
+//		return Fibo(n - 1) + Fibo(n - 2);
+//}
+
+//void printArray(const std::array<int, 5>& my_array, const int& idx)
+//{
+//	//사용자가 지정한 범위 외의 행동을 하려고 하면 이를 저지해줌
+//	assert(idx >= 0); // 배열의 크기가 5이므로 반드시 0보다는 커야하고
+//	assert(idx < my_array.size() - 1); // 4보다는 작아야함
+//	cout << my_array[idx] << endl;
+//}
+
+//	ellipsis
+//double findAverage(int count, ...)
+//{
+//	//va : 가변 인수
+//	double sum = 0;
+//	va_list list;
+//
+//	va_start(list, count);
+//
+//	for (int i = 0; i < count; i++)
+//	{
+//		sum += va_arg(list, int);
+//	}
+//	va_end(list);
+//
+//	return sum / count;
+//}
+
+int main(int argc, char *argv[])
 {
 	//매개변수와 인자의 구분
 	
@@ -273,9 +326,97 @@ int main()
 	//funcPtr = goo;
 	//cout << funcPtr() << endl; // 10출력
 
-	std::array<int, 10> my_array{ 1,2,3,4,5,6,7,8,9,10 };
+	//std::array<int, 10> my_array{ 1,2,3,4,5,6,7,8,9,10 };
 
-	printNumber(my_array, isEven);
-	printNumber(my_array, isOdd);
+	//printNumber(my_array, isEven);
+	//printNumber(my_array, isOdd);
 
+	//스택 :First In Last Out
+
+	//스택은 빠르지만 크기가 작음, 밑에서부터 차례대로 쌓임
+	//힙은 크기가 크지만 어디에 배치될지 오래걸림
+
+	//int* p_vtr = new int[3]{ 1,2,3 };
+	
+	//std::vector<int> v{ 1,2,3 };
+
+	//v.resize(2); // 더 큰 크기로 resize하면 나머지는 0으로 채움
+
+	//v.reserve(1024); // resize보다 빠름, 나머지 공백으로 남겨둠
+	
+	//for (auto &e : v)
+	//{
+	//	cout << e << ' ';
+	//}
+	//cout << endl;
+	//cout << v.size() << " " << v.capacity() << endl; //2, 3
+	// size는 원소의 갯수, capacity는 물리적 크기
+
+	//vector는 더 작은 크기로 resize할때 매번 delete하면 시간이 오래 걸리므로
+	//지우지 않고 보이는것만 2개로 보이게 함
+
+	//cout << v.at(2); //런타임 에러
+	//cout << v[2]; //런타임에러
+	
+	//int* v_ptr = v.data();
+	//cout << v_ptr[2]; // 포인터를 이용해 접근하면 숨겨져있는 3에 접근할수있음
+
+	//std::vector<int> stack; // 백터를 스택처럼 사용하기
+
+	//stack.push_back(3);
+	//printStack(stack);
+	//stack.push_back(5);
+	//printStack(stack);
+	//stack.push_back(7);
+	//printStack(stack);
+	//stack.pop_back();
+	//printStack(stack);
+	//stack.pop_back();
+	//printStack(stack);
+	//stack.pop_back();
+	//printStack(stack);
+
+	//백터에서 push pop을 할때 reserve를 이용하면 capacity를 늘릴필요가 없어서
+	//new delete를 사용할 필요가 없어서 효율이 좋음
+	
+	//재귀함수호출 -> 반드시 종료조건이 있어야함
+
+	//countDown(2);
+
+	//Fibo
+	//for(int i=1;i<=10;i++)
+	//	cout << Fibo(i) << ' ';
+
+	//방어적 프로그래밍 
+	//-> 사용자가 프로그램을 문제없이 사용하도록 코드를 작성하는것
+
+	//assert 컴파일러의 도움을 받는것 #include <cassert>
+
+	//assert(false); //디버그모드에서 개발자가 컴파일러에게 도움을 받는것
+
+	//int number = 5;
+
+	//assert(number == 5);
+
+	//std::array<int, 5>my_array{ 1,2,3,4,5 };
+
+	//printArray(my_array, 100);
+
+	//const int x = 5;
+
+	//static_assert(x == 5, "X should be 5");
+	
+	//mai함수의 매개변수  argc, argv
+	//for (int i = 0; i < argc; i++)
+	//{
+	//	cout << argv[i] << endl;
+	//}
+	
+	//생략부호 ellipsis
+
+	//cout << findAverage(1, 1, 2, 3) << endl;
+	//cout << findAverage(3, 1, 2, 3) << endl;
+	//cout << findAverage(5, 1, 2, 3, 4, 5) << endl;
+	//cout << findAverage(10, 1, 2, 3) << endl;
+	
 }
