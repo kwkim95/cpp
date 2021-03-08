@@ -406,7 +406,7 @@ int main(int argc, char *argv[])
 
 	//static_assert(x == 5, "X should be 5");
 	
-	//mai함수의 매개변수  argc, argv
+	//main함수의 매개변수  argc, argv
 	//for (int i = 0; i < argc; i++)
 	//{
 	//	cout << argv[i] << endl;
